@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - '1433:1433'
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=WBTCb3WBTCORAR!"
+      - "MSSQL_PID=Developer"
+    restart: unless-stopped
+    networks:
+     hownet:
+       ipv4_address: 172.103.0.100
+
+networks:
+  hownet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.103.0.0/24
